@@ -17,11 +17,13 @@
         <script>
             angular.module('nameApp',[]).controller('nameCtrl',function($scope)
             {
+                $scope.firstname = 'Raj';
+                $scope.lastname = 'kumar';
                 $scope.displayfullname=function()
                 {
-                    $scope.fullname=$scope.firstname+' '+$scope.lastname
+                    $scope.fullname=$scope.firstname+' '+$scope.lastname;
                 }
-            })
+            });
         </script>
     </div>
 </body>
