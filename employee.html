@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="empApp">
+<head>
+    <title>Employee Search</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="empCtrl">
+    <h2>Employee List</h2>
+    Search by Name:
+    <input type="text" ng-model="searchName"><br><br>
+    Search by Salary:
+    <input type="number" ng-model="searchSalary"><br><br>
+
+    <ul>
+        <li ng-repeat="employee in employees | filter: {name: searchName, salary: searchSalary}">
+            {{ employee.name }} - Salary: Rs {{ employee.salary }}
+        </li>
+    </ul>
+
+    <script>
+        var app = angular.module('empApp',[]);
+        app.controller('empCtrl', function($scope)
+        {
+            $scope.employees = [
+                { name: 'Abhi', salary: 50000},
+                { name: 'Ram', salary: 40000},
+                { name: 'John', salary: 20000},
+                { name: 'Sham', salary: 10000},
+            ];
+            $scope.searchName = '';
+            $scope.searchSalary = '';
+        });
+    </script>
+</body>
+</html>
