@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="itemApp">
+<head>
+    <title>Items</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="itemCtrl">
+    <h2>Item Collection</h2>
+    Add New Item:
+    <input type="text" ng-model="newItem">
+    <button ng-click="addItem()">Add Item</button>
+    
+    <ul>
+        <li ng-repeat="item in items track by $index">
+            {{ item }}
+            <button ng-click="removeItem($index)">Remove</button>
+        </li>
+    </ul>
+    <p>Total Items: {{ items.length }}</p>
+
+    <script>
+        var app = angular.module('itemApp', []);
+        app.controller('itemCtrl', function ($scope) {
+            $scope.items = ['Item 1', 'Item 2', 'Item 3'];
+            $scope.newItem = '';
+            $scope.addItem = function () {
+                if ($scope.newItem) {
+                    $scope.items.push($scope.newItem);
+                    $scope.newItem = '';
+                }
+            };
+
+            $scope.removeItem = function (index) {
+                $scope.items.splice(index, 1);
+            };
+        });
+    </script>
+</body>
+</html>
